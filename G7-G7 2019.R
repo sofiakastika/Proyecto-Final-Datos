@@ -1,5 +1,4 @@
 #g7-g7 2019 
-
 library(readxl)
 g7_g7_2019 <- read_excel("econ-708/proyectos/g7-g7 2019.xlsx")
 View(g7_g7_2019)
@@ -12,15 +11,7 @@ install.packages("network")
 
 library(igraph)
 library(network)
-
 net <- graph_from_data_frame(d=g7_g7_2019, vertices=Nodos_Mundo, directed=T) 
 net
-
 plot(net)
-
-
-
-
-
-
 
