@@ -21,19 +21,19 @@ library(ggflags)
 # Cargamos datasets
 arg <- read_excel("econ-708/proyectos/proyecto_final/Bases/argentina.xlsx")
 br <- read_excel("econ-708/proyectos/proyecto_final/Bases/brasil.xlsx")
-bol <- read_excel("econ-708/proyectos/proyecto_final/Bases/bolivia.xlsx")
-ch <- read_excel("econ-708/proyectos/proyecto_final/Bases/chile.xlsx")
-ecu <- read_excel("econ-708/proyectos/proyecto_final/Bases/ecuador.xlsx")
-guy <- read_excel("econ-708/proyectos/proyecto_final/Bases/guyana.xlsx")
 par <- read_excel("econ-708/proyectos/proyecto_final/Bases/paraguay.xlsx")
-per <- read_excel("econ-708/proyectos/proyecto_final/Bases/perú.xlsx")
-sur <- read_excel("econ-708/proyectos/proyecto_final/Bases/suriname.xlsx")
 uy <- read_excel("econ-708/proyectos/proyecto_final/Bases/uruguay.xlsx")
 ven <- read_excel("econ-708/proyectos/proyecto_final/Bases/venezuela.xlsx")
 
-#Trabajamos los datasets
+#Sofi RStudio
+#arg <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/argentina.xlsx")
+#br <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/brasil.xlsx")
+#uy <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/uruguay.xlsx")
+#par <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/paraguay.xlsx")
+#ven <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/venezuela.xlsx")
 
-mercosur <- rbind (arg, br, bol, ch, ecu, guy, par, per, sur, uy, ven)          #Une todos los datasets en uno solo
+#Trabajamos los datasets
+mercosur <- rbind (arg, br, uy, par, ven)  
 
 #colnames(mercosur)[5] <-  "Value"
 
