@@ -114,11 +114,6 @@ ggplot(merc_g7_net_2019,
   scale_country() +
   scale_size(range = c(2, 25))+ 
   theme_blank()
-
-
-#Cosas a resolver. Ver como hacer para que las bolitas sean de distintos tamanos y ver como hacer para cambiarle el color a los edges
-  
-  
   
 filter(merc_g7_net_2000, Commodity == "Live animals")
 
