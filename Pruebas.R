@@ -26,13 +26,6 @@ for (i in 1:11) {
   nodos_merc$value[i] <- sum(merc[merc$Reporter == nodos_merc$Reporter[i],]$`Trade Value (US$)`)
 }
 
-mutate(nodos_merc, value =
-for (i in nodos_merc) {
-  
-  sum(merc[merc$Reporter == i,]$`Trade Value (US$)`)
-  
-}
-)
 
 merc_net_2000 <- graph_from_data_frame(d= filter (merc,                # Mercosur y G7 año 2000
                                                   Year == "2000" & `Trade Value (US$)` > 1000000 ),
