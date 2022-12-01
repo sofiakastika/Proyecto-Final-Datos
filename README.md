@@ -1,6 +1,6 @@
 # Proyecto Final: Integración económica y sus dilemas para el desarrollo
 
-Realizamos un análisis exploratorio de la evolución del índice de desarrollo humano (IDH) en relación con las redes de comercio internacional inter e intra regional para los países del MERCOSUR y G7. 
+Realizamos un análisis exploratorio de la evolución del índice de desarrollo humano (IDH) en relación con las redes de comercio inter e intra regional para los países del MERCOSUR y G7. 
 
 Se encontrará en el repositorio el código para la realización de: 
 
