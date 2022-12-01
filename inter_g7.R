@@ -22,44 +22,83 @@ inter_g7 <- inter_g7 %>% relocate(Year, .after = last_col())
 nodos_g7 <- inter_g7 %>% select(Reporter)                           
 nodos_g7 <- nodos_g7 [!duplicated(nodos_g7), ]
 
-nodos_mercosur <- inter_g7 %>% select(Partner)                                        #Creamos los nodos G7
-nodos_mercosur <- nodos_mercosur [!duplicated(nodos_mercosur), ]
-colnames(nodos_mercosur)[1] <-  "Reporter"
+nodos_merc <- inter_g7 %>% select(Partner)                                        #Creamos los nodos G7
+nodos_merc <- nodos_merc [!duplicated(nodos_merc), ]
+colnames(nodos_merc)[1] <-  "Reporter"
 
-#Valor total de las exportaciones 
-nodos_mercosur <- mutate(nodos_mercosur, value = 0)
+#Valor total de las exportaciones
+#NODOS MERCOSUR
+nodos_merc_2000 <- mutate(nodos_merc, value = 0)
+nodos_merc_2010 <- mutate(nodos_merc, value = 0)
+nodos_merc_2019 <- mutate(nodos_merc, value = 0)
+
+#Valores 2000
 for (i in 1:5) {
   
-  nodos_mercosur$value[i] <- sum(inter_g7[inter_g7$Partner == nodos_mercosur$Reporter[i], ]$`Trade Value (US$)`)  
+  nodos_merc_2000$value[i] <- sum(inter_g7[inter_g7$Partner == nodos_merc_2000$Reporter[i] & inter_g7$Year == 2000, ]$`Trade Value (US$)`)  
 }
 
-nodos_g7 <- mutate(nodos_g7, value = 0)
+#Valores 2010
+for (i in 1:5) {
+  
+  nodos_merc_2010$value[i] <- sum(inter_g7[inter_g7$Partner == nodos_merc_2010$Reporter[i] & inter_g7$Year == 2010, ]$`Trade Value (US$)`)  
+}
+
+#Valores 2019
+for (i in 1:5) {
+  
+  nodos_merc_2019$value[i] <- sum(inter_g7[inter_g7$Partner == nodos_merc_2019$Reporter[i] & inter_g7$Year == 2019, ]$`Trade Value (US$)`)  
+}
+
+#NODOS G7
+nodos_g7_2000 <- mutate(nodos_g7, value = 0)
+nodos_g7_2010 <- mutate(nodos_g7, value = 0)
+nodos_g7_2019 <- mutate(nodos_g7, value = 0)
+
+#VALORES 2000
 for (i in 1:7) {
   
-  nodos_g7$value[i] <- sum(inter_g7[inter_g7$Reporter == nodos_g7$Reporter[i], ]$`Trade Value (US$)`)  
+  nodos_g7_2000$value[i] <- sum(inter_g7[inter_g7$Reporter == nodos_g7_2000$Reporter[i] & inter_g7$Year == 2000, ]$`Trade Value (US$)`)  
 }
 
-nodos <- rbind(nodos_g7, nodos_mercosur)                                            #Creamos los nodos de toda la red
+#VALORES 2010
+for (i in 1:7) {
+  
+  nodos_g7_2010$value[i] <- sum(inter_g7[inter_g7$Reporter == nodos_g7_2010$Reporter[i] & inter_g7$Year == 2010, ]$`Trade Value (US$)`)  
+}
+
+#VALORES 2019
+for (i in 1:7) {
+  
+  nodos_g7_2019$value[i] <- sum(inter_g7[inter_g7$Reporter == nodos_g7_2019$Reporter[i] & inter_g7$Year == 2019, ]$`Trade Value (US$)`)  
+}
+
+
+#Unimos todos los nodos para cada año
+nodos_2000 <- rbind(nodos_merc_2000, nodos_g7_2000)
+nodos_2010 <- rbind(nodos_merc_2010, nodos_g7_2010)
+nodos_2019 <- rbind( nodos_merc_2019, nodos_g7_2019)
+
 
 # Creamos las redes
 #2000
 g7_merc_net_2000 <- graph_from_data_frame(d= filter (inter_g7,              
                                                      Year == "2000" & `Trade Value (US$)` >= 1000000),
-                                          vertices=nodos, directed=T)
+                                          vertices=nodos_2000, directed=T)
 
 g7_merc_net_2000 <- ggnetwork(g7_merc_net_2000)                                 
 
 #2010
 g7_merc_net_2010 <- graph_from_data_frame(d= filter (inter_g7,              
                                                      Year == "2010" & `Trade Value (US$)` >= 1000000),
-                                          vertices=nodos, directed=T)
+                                          vertices=nodos_2010, directed=T)
 
 g7_merc_net_2010 <- ggnetwork(g7_merc_net_2010) 
 
 #2019
 g7_merc_net_2019 <- graph_from_data_frame(d= filter (inter_g7,              
                                                      Year == "2019" & `Trade Value (US$)` >= 1000000),
-                                          vertices=nodos, directed=T)
+                                          vertices=nodos_2019, directed=T)
 
 g7_merc_net_2019 <- ggnetwork(g7_merc_net_2019)                                 
 
