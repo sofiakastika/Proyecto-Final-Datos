@@ -103,33 +103,60 @@ merc_g7_net_2019$country <- merc_g7_net_2019$country %>% tolower()
 
 
 #Visualización
+#2000
 ggplot(merc_g7_net_2000, 
        aes(x = x, y = y, xend = xend, yend = yend,
            country=country)) +
-  geom_node_point(aes(size = value)) + 
+  geom_node_point(aes(size = value), show.legend = F) + 
   geom_edges(color="grey") +
-  geom_flag(aes(size = value)) +
+  geom_flag(aes(size = value), show.legend = F) +
   scale_country() +
   scale_size(range = c(2, 25))+ 
+  ggtitle("2000") + 
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank(), 
+        axis.title.x=element_blank(),
+        axis.text.y=element_blank(),  
+        axis.ticks.y=element_blank(),  
+        axis.title.y=element_blank()
+  ) 
   theme_blank()
-
-ggplot(merc_g7_net_2010, 
-       aes(x = x, y = y, xend = xend, yend = yend,
-           country=country)) +
-  geom_node_point(aes(size = value)) + 
-  geom_edges(color="grey") +
-  geom_flag(aes(size = value)) +
-  scale_country() +
-  scale_size(range = c(2, 25))+ 
+  
+#2010
+  ggplot(merc_g7_net_2010, 
+         aes(x = x, y = y, xend = xend, yend = yend,
+             country=country)) +
+    geom_node_point(aes(size = value), show.legend = F) + 
+    geom_edges(color="grey") +
+    geom_flag(aes(size = value), show.legend = F) +
+    scale_country() +
+    scale_size(range = c(2, 25))+ 
+    ggtitle("2010") + 
+    theme(axis.text.x=element_blank(), 
+          axis.ticks.x=element_blank(), 
+          axis.title.x=element_blank(),
+          axis.text.y=element_blank(),  
+          axis.ticks.y=element_blank(),  
+          axis.title.y=element_blank()
+    ) 
   theme_blank()
-
-ggplot(merc_g7_net_2019, 
-       aes(x = x, y = y, xend = xend, yend = yend,
-           country=country)) +
-  geom_node_point(aes(size = value)) + 
-  geom_edges(color="grey") +
-  geom_flag(aes(size = value)) +
-  scale_country() +
-  scale_size(range = c(2, 25))+ 
+  
+  
+#2019
+  ggplot(merc_g7_net_2019, 
+         aes(x = x, y = y, xend = xend, yend = yend,
+             country=country)) +
+    geom_node_point(aes(size = value), show.legend = F) + 
+    geom_edges(color="grey") +
+    geom_flag(aes(size = value), show.legend = F) +
+    scale_country() +
+    scale_size(range = c(2, 25))+ 
+    ggtitle("2019") + 
+    theme(axis.text.x=element_blank(), 
+          axis.ticks.x=element_blank(), 
+          axis.title.x=element_blank(),
+          axis.text.y=element_blank(),  
+          axis.ticks.y=element_blank(),  
+          axis.title.y=element_blank()
+    ) 
   theme_blank()
-
