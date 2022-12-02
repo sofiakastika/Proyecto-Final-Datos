@@ -1,4 +1,5 @@
-#Inter G7 
+#Inter G7
+#Cargamos libreías
 library(tidyverse)
 library(readxl)
 library(tidyverse)
@@ -11,6 +12,7 @@ library(countrycode)
 library(magrittr)
 library(ggflags)
 
+#Cargamos bases y depuramos
 inter_g7 <- read_excel("C:/Users/sofi1/OneDrive/Escritorio/Económicas/Segundo Cuatri 2022/Datos/Curso/econ-708/proyectos/proyecto_final/Bases/g7_mercosur.xlsx")
 inter_g7 <- filter(inter_g7, Partner %in% c("Argentina","Brazil", "Uruguay", "Paraguay", "Venezuela"))
 inter_g7 <- inter_g7 %>% relocate(Year, .after = last_col())                    
