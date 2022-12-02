@@ -28,10 +28,7 @@ uy <- read_excel("econ-708/proyectos/proyecto_final/Bases/uruguay.xlsx")
 ven <- read_excel("econ-708/proyectos/proyecto_final/Bases/venezuela.xlsx")
 
 #Trabajamos los datasets
-
 mercosur <- rbind (arg, br, uy, par, ven)          
-
-#colnames(mercosur)[5] <-  "Value"
 
 mercosur <- mercosur %>% relocate(Year, .after = last_col())                    #Pasa la columna año al ultimo lugar
 
@@ -42,7 +39,7 @@ nodos_g7 <- mercosur %>% select(Partner)                                        
 nodos_g7 <- nodos_g7 [!duplicated(nodos_g7), ]
 colnames(nodos_g7)[1] <-  "Reporter"
 
-nodos_merc2 <- filter(nodos_merc, Reporter != "Venezuela")
+nodos_merc2 <- filter(nodos_merc, Reporter != "Venezuela")                      #Creamos una variante de los nodos sin VZ para poder usar en 2019
 
 
 #Valor total de las exportaciones 
