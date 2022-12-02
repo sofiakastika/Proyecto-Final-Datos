@@ -1,6 +1,5 @@
 #Intra G7
-
-
+#Cargamos librerías
 library(DT)
 library(readxl)
 library(tidyverse)
@@ -16,18 +15,12 @@ library(ggflags)
 
 
 # Importamos datos --------------------------------------------------------
-
-#mercosur_intra <- read_excel("econ-708/proyectos/proyecto_final/Bases/g7.xlsx")
-
-
 #Para importar Fran RStudio
-
 g7_intra <- read_excel("econ-708/proyectos/Proyecto-Final-Datos/Bases/g7.xlsx")
 
 
 
 # Creamos los nodos g7 (y eliminamos duplicados) ---------------
-
 
 nodos_g7 <- g7_intra %>% select(Reporter)                       
 nodos_g7 <- nodos_g7 [!duplicated(nodos_g7), ]
@@ -60,7 +53,7 @@ for (i in 1:7) {
   nodos_g7_2019$value[i] <- sum(g7_intra[g7_intra$Partner == nodos_g7_2019$Reporter[i] & g7_intra$Year == 2019, ]$`Trade Value (US$)`)  
 }
 
-# Creamos la red ----------------------------------------------------------
+# Creamos la red para transacciones de al menos 1M U$D----------------------------------------------------------
 
 
 #2000
