@@ -1,12 +1,15 @@
+#Cargamos librerías
 library(dplyr)
 library(RColorBrewer)
 library(stringr)
 library(ggplot2)
 library(maps)
 library(tidyverse)
-options(scipen = 999) ## To disable scientific notation 
+options(scipen = 999) # Desactivamos notación científica
 library(readxl)
 library(writexl)
+
+#Cargamos base de datos y creamos mapa con cordenadas para la visualización
 idhmap <- read_excel("/Users/lucasordonez/Desktop/base de datos/idhxlsx.xlsx")
 
 world <- map_data("world")
@@ -17,19 +20,17 @@ worldplot <- ggplot() +
   coord_fixed(1.3)
 worldplot
 
-
+#Filtrado de bases
 idhmap <- select(idhmap, region = "Country", "2000", "2010","2019")
 
 idhok <- filter(idhmap, region %in% c("Argentina", "Venezuela (Bolivarian Republic of", "Uruguay", "Paraguay", "Brazil", "Germany", "Canada", "France", "Italy", "Japan", "United Kingdom","United States" ))
-
-
 
 idh2000<- select(idhok, "region", "2000") 
 idh2010<- select(idhok, "region", "2010")
 idh2019<- select(idhok, "region", "2019")
 
 
-# rename variables
+# Renombramos los paises a formato 3 caracteres
 idh2000ok <- idh2000 %>% mutate(region = recode(str_trim(region), "United States" = "USA",
                                               "United Kingdom" = "UK"))
 
@@ -41,8 +42,7 @@ idh2019ok <- idh2019 %>% mutate(region = recode(str_trim(region), "United States
 
 
 
-## Make the HDI numeric
-
+# Hacemos el IDH numeric
 idh2000ok$`2000` <- as.numeric(as.character(idh2000ok$`2000`))
 
 idh2010ok$`2010` <- as.numeric(as.character(idh2010ok$`2010`))
@@ -50,9 +50,7 @@ idh2010ok$`2010` <- as.numeric(as.character(idh2010ok$`2010`))
 idh2019ok$`2019` <- as.numeric(as.character(idh2019ok$`2019`))
 
 
-## inner join data bases(world and idh)
-
-
+# Juntamos el mapa de coordenadas con el IDH
 idh2000map <- inner_join(world, idh2000ok, by = "region")
 
 idh2010map <- inner_join(world, idh2010ok, by = "region")
@@ -61,8 +59,7 @@ idh2019map <- inner_join(world, idh2019ok, by = "region")
 
 
 
-# plot mapa
-
+# Visualización
 plain <- theme(
   axis.text = element_blank(),
   axis.line = element_blank(),
